@@ -9,9 +9,19 @@ function App() {
 
   const login = () => {
     fetch("http://localhost:5000/login", {
-      email: email,
-      password: password,
-    });
+      method: "post",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Login successful:", data);
+      })
+      .catch((error) => {
+        console.error("Error during login:", error);
+      });
   };
   return (
     <div className="App">
