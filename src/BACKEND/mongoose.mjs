@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import api from "./api/api.mjs";
+import api from "./api/index.mjs";
 
 const mongoDB = "mongodb://localhost:27017/lms";
 
