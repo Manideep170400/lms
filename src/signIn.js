@@ -19,7 +19,7 @@ function SignIn() {
   return (
     <div className="App">
       <span>
-        <p>Lagout</p>
+        <p>Logout</p>
         <LogoutOutlinedIcon />
       </span>
       <header className="App-header">

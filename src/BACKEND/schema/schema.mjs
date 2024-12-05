@@ -10,6 +10,10 @@ const createSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  confirmPassword: {
+    type: String,
+    required: true,
+  },
 });
 
 const login = () => {

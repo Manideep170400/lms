@@ -13,7 +13,7 @@ const api = (app) => {
       if (exist) {
         return res.send("User already exists");
       }
-      if (req.body.password !== req.body.createPassword) {
+      if (req.body.password !== req.body.confirmPassword) {
         return res.send("create a same password please try again");
       }
       const response = await userData.CreateUser.create(req.body);
