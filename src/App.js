@@ -10,6 +10,9 @@ function App() {
   const login = () => {
     fetch("http://localhost:5000/login", {
       method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         email: email,
         password: password,
