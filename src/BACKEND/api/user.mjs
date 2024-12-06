@@ -6,7 +6,7 @@ import {
   getUser,
   updateUser,
   deleteUser,
-} from "../controllers/user.mjs";
+} from "../controllers/courses.mjs";
 
 const router = Router();
 

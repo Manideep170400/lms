@@ -45,26 +45,3 @@ export const getUser = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
-export const updateUser = async (req, res) => {
-  try {
-    const response = await schema.User.updateOne(
-      { _id: req.params.id },
-      req.body
-    );
-    res.send(response);
-  } catch (error) {
-    console.error("Error in PUT /:id:", error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-
-export const deleteUser = async (req, res) => {
-  try {
-    const response = await schema.User.findByIdAndDelete(req.params.id);
-    res.send(response);
-  } catch (error) {
-    console.error("Error in DELETE /:id:", error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
