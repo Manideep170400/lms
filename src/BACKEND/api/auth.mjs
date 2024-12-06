@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { encode } from "../jwt/index.mjs";
-import jwtMiddleware from "../../middelware.mjs";
 import { errorHandler } from "../utils/error.mjs";
 import initSchema from "../schema/index.mjs";
+import { comparePassword } from "../bycrypt/index.mjs";
 
 const schema = initSchema();
 const router = Router();
@@ -13,10 +13,12 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     let exist = await schema.User.findOne({ email });
     if (!exist) {
-      return res.status(404).json({ message: "user not found" });
+      return errorHandler(res, "User not found", 404);
     }
-    if (exist.password !== password) {
-      return res.status(401).json({ message: "Invalid credentials" });
+
+    const isMatch = await comparePassword(password, exist.password);
+    if (!isMatch) {
+      return errorHandler(res, "Invalid credentials", 401);
     }
     let payload = {
       user: {

@@ -1,7 +1,7 @@
 import React from "react";
 
 const logout = () => {
-  return <div>logout</div>;
+  return <div>localStorage.removeItem("user"); navigate("/login");</div>;
 };
 
 export default logout;

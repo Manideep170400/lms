@@ -4,10 +4,11 @@ const SECRET_KEY = "jwtSecurity";
 const JWT_EXPIRES_IN = "1h";
 
 export const encode = (payload) => {
-  jwt.sign(payload, SECRET_KEY, { expiresIn: JWT_EXPIRES_IN }, (err, token) => {
-    if (err) throw err;
-    return token;
-  });
+  try {
+    return jwt.sign(payload, SECRET_KEY, { expiresIn: JWT_EXPIRES_IN });
+  } catch (error) {
+    console.error("Error in encode:", error);
+  }
 };
 
 export const decode = (token) => jwt.verify(token, SECRET_KEY);
