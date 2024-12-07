@@ -3,18 +3,20 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import "./App.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HomePage from "./axios";
-
+import { loginPage, createAccount } from "./axios";
 function SignIn() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [token, setToken] = useState();
   const navigate = useNavigate();
 
-  const MainData = HomePage(navigate);
+  const handleLogin = async () => {
+    const data = { email, password };
+    await loginPage(data, setToken);
+  };
 
-  const handleTogglePage = {
-    createAccount: MainData.createAccount,
-    loginPage: MainData.loginPage,
+  const handleCreateAccount = async () => {
+    await createAccount(navigate);
   };
   return (
     <div className="App">
@@ -40,10 +42,9 @@ function SignIn() {
               setPassword(e.target.value);
             }}
           />
-          <button onClick={handleTogglePage.loginPage}> login</button>
-          <button onClick={handleTogglePage.createAccount}>
-            Create Account
-          </button>
+          <p>{token}</p>
+          <button onClick={handleLogin}> login</button>
+          <button onClick={handleCreateAccount}>Create Account</button>
         </Card>
       </header>
     </div>
