@@ -3,7 +3,7 @@ import stripe from "../stripe/index.mjs";
 const payment = async (req, res) => {
   console.log(req.body);
   try {
-    const response = await stripe.sessions.create({
+    const response = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: [
         {
