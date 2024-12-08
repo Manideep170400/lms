@@ -5,7 +5,7 @@ import { hashedPassword } from "../bycrypt/index.mjs";
 
 const schema = initSchema();
 
-export const createUser = async (req, res) => {
+export const UserCreate = async (req, res) => {
   try {
     console.log(req.body);
     const exist = await schema.User.findOne({
