@@ -3,13 +3,15 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import "./App.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginPage, createAccount } from "./axios";
+import HomePage from "./axios";
+
 function SignIn() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [token, setToken] = useState();
   const navigate = useNavigate();
 
+  const { loginPage, createAccount } = HomePage();
   const handleLogin = async () => {
     const data = { email, password };
     await loginPage(data, setToken);
