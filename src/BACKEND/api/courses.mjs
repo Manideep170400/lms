@@ -6,14 +6,12 @@ import {
   updateCourse,
   deleteCourse,
 } from "../controllers/courses.mjs";
+import jwtMiddleware from "../../middelware.mjs";
+
 const router = Router();
 
-router.get(
-  "/courses",
-  authorize(["student", "instructor", "admin"]),
-  getCourses
-);
-router.post("/courses", authorize(["instructor", "admin"]), createCourse);
-router.put("/courses/:id", authorize(["instructor", "admin"]), updateCourse);
-router.delete("/courses/:id", authorize(["admin"]), deleteCourse);
+router.get("/courses", jwtMiddleware, authorize, getCourses);
+router.post("/courses", authorize, createCourse);
+// router.put("/courses/:id", authorize(["instructor", "admin"]), updateCourse);
+// router.delete("/courses/:id", authorize(["admin"]), deleteCourse);
 export default router;

@@ -23,6 +23,7 @@ router.post("/login", async (req, res) => {
     let payload = {
       user: {
         id: exist._id,
+        role: exist.role,
       },
     };
     const token = encode(payload);

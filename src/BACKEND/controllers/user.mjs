@@ -23,11 +23,20 @@ export const UserCreate = async (req, res) => {
       console.error("Error in /createUser: Invalid Email and password");
       return errorHandler(res, "Invalid Email and password");
     }
-
     req.body.password = await hashedPassword(req.body.password);
     const response = await schema.User.create(req.body);
     await response.save();
     res.status(200).send(response);
+    const role = req.body.role;
+    if (role === "admin") {
+      res.status(200).send(response);
+    }
+    if (role === "instructor") {
+      res.status(200).send(response);
+    }
+    if (role === "student") {
+      res.status(200).send(response);
+    }
   } catch (error) {
     console.error("Error in /createUser:", error);
     return errorHandler(res, error);
